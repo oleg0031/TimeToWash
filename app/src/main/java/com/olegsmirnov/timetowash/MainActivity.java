@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnOrder = findViewById(R.id.btn_order);
         btnPrice.setOnClickListener(onPriceClickListener);
         btnOrder.setOnClickListener(onOrderClickListener);
+
     }
 
     private void displayClock(final TextView tvClock) {
@@ -78,31 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 snackbar.show();
                 return;
             }
-
-            String strWorkTime = spinnerTimeWork.getSelectedItem().toString();
-            String strCleaningType = spinnerCleaningType.getSelectedItem().toString();
-            int price = 0;
-            int counter = 0;
-            for (int i = timeWorkValues.length - 1; i >= 0 ; i--) {
-                counter++;
-                String val = timeWorkValues[i];
-                if (strWorkTime.equals(val)) {
-                    if (strCleaningType.equals("Легкая"))
-                        price = 50 * counter;
-                    else if (strCleaningType.equals("Генеральная"))
-                        price = 75 * counter;
-                }
-            }
-
-            int square = Integer.parseInt(etSquare.getText().toString());
-            if (square <= 100)
-                price += 25;
-            else if (square <= 300)
-                price += 50;
-            else if (square <= 500)
-                price += 100;
-            else price += 200;
-            tvPrice.setText("Стоимость уборки: " + price + " грн.");
+            computePrice();
         }
     };
 
@@ -122,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
             String square = etSquare.getText().toString();
             String comment = etComment.getText().toString();
             String phoneNumber = etNumber.getText().toString();
+            int price = computePrice();
             StringBuilder strForm = new StringBuilder();
-            strForm.append("До скольки нужно убрать: ").append(timeAvailable).append("\n").append("За сколько нужно убрать: ").append(timeWork).
-                    append("\n").append("Тип уборки: ").append(cleaningType).append("\n").append("Номер телефона: ").append(phoneNumber).append("\n").append("Комментарий: ").append(comment);
+            strForm.append("До скольки нужно убрать: ").append(timeAvailable).append("\n").append("За сколько нужно убрать: ")
+                    .append(timeWork).append("\n").append("Тип уборки: ").append(cleaningType).append("\n").append("Номер телефона: ")
+                    .append(phoneNumber).append("\n").append("Комментарий: ").append(comment).append("\n").append("Ориентировочная цена: ").append(price).append(" грн.");
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL, new String[]{"oleg0031@gmail.com"});
@@ -133,5 +112,33 @@ public class MainActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(i, "Оставить заказ"));
         }
     };
+
+    private int computePrice() {
+        String strWorkTime = spinnerTimeWork.getSelectedItem().toString();
+        String strCleaningType = spinnerCleaningType.getSelectedItem().toString();
+        int price = 0;
+        int counter = 0;
+        for (int i = timeWorkValues.length - 1; i >= 0 ; i--) {
+            counter++;
+            String val = timeWorkValues[i];
+            if (strWorkTime.equals(val)) {
+                if (strCleaningType.equals("Легкая"))
+                    price = 50 * counter;
+                else if (strCleaningType.equals("Генеральная"))
+                    price = 75 * counter;
+            }
+        }
+
+        int square = Integer.parseInt(etSquare.getText().toString());
+        if (square <= 100)
+            price += 25;
+        else if (square <= 300)
+            price += 50;
+        else if (square <= 500)
+            price += 100;
+        else price += 200;
+        tvPrice.setText("Стоимость уборки: " + price + " грн.");
+        return price;
+    }
 
 }
