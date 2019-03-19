@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">TimeToWash</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="time_available">До скольки нужно убрать</string>
+    <string name="time_work">За сколько нужно убрать</string>
+    <string name="square">Площадь квартиры</string>
+    <string name="cleaning_type">Тип уборки</string>
+    <string name="square_meter">м2</string>
+    <string name="comment">(Опционально) Комментарий к заказу</string>
+    <string name="price">Рассчитать стоимость</string>
+    <string name="order">Заказать уборку</string>
+    <string name="phone_number">Номер телефона</string>
+    <string-array name="cleaning_type_values">
+        <item>Легкая</item> <item>Генеральная</item>
+    </string-array>
+    <string-array name="time_available">
+        <item>8:00</item> <item>8:30</item> <item>9:00</item> <item>9:30</item> <item>10:00</item> <item>10:30</item> <item>11:00</item>
+        <item>11:30</item> <item>12:00</item> <item>12:30</item> <item>13:00</item> <item>13:30</item> <item>14:00</item> <item>14:30</item>
+        <item>15:00</item> <item>15:30</item> <item>16:00</item> <item>16:30</item> <item>17:00</item> <item>17:30</item> <item>18:00</item>
+        <item>18:30</item> <item>19:00</item> <item>19:30</item> <item>20:00</item> <item>21:30</item> <item>22:00</item> <item>22:30</item> <item>23:00</item>
+    </string-array>
+    <string-array name="time_work">
+        <item>0:30</item> <item>01:00</item> <item>01:30</item> <item>02:00</item> <item>02:30</item> <item>03:00</item>
+        <item>03:30</item> <item>04:00</item> <item>04:30</item> <item>05:00</item> <item>05:30</item> <item>06:00</item>
+    </string-array>
+</resources>
